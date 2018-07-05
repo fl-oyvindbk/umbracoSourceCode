@@ -58,31 +58,35 @@ namespace UmbracoCloud.Core.Controllers
             public string Text { get; set; }
         }
 
-        public List<NewsItem> GetallShips()
+        public List<Ship> GetAllShips()
         {
-            var newsItems = new List<NewsItem>();
+            var ships = new List<Ship>();
             var items = Umbraco.ContentAtXPath("//ship").Where("Visible").OrderBy("createDate desc");
            
 
             foreach (var item in items)
             {
-                var newsItem = new NewsItem();
-                newsItem.Headline = item.GetPropertyValue("newsItemHeadline").ToString();
-                newsItem.Body = item.GetPropertyValue("newsItemBody").ToString();
-                newsItem.CreateDate = Convert.ToDateTime(item.CreateDate);
-                newsItems.Add(newsItem);
-                Debug.Write(newsItem.Headline);
+                var ship = new Ship();
+                ship.Name = item.GetPropertyValue("shipName").ToString();
+                ship.Desc = item.GetPropertyValue("shipDescription").ToString();
+                ship.Code = item.GetPropertyValue("shipCode").ToString();
+                
+                //newsItem.CreateDate = Convert.ToDateTime(item.CreateDate);
+                ships.Add(ship);
+               
             }
-            return newsItems;
+            return ships;
         }
 
 
-        
 
-        public class NewsItem
+
+        public class Ship
         {
-            public string Headline { get; set; }
-            public string Body { get; set; }
+            public string Name { get; set; }
+            public string Code { get; set; }
+            public string Desc { get; set; }
+            public string[] Images { get; set; }
             public DateTime CreateDate { get; set; }
         }
     }
