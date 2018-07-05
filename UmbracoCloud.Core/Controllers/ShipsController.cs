@@ -24,11 +24,12 @@ namespace UmbracoCloud.Core.Controllers
           //  return new[] { "NB87", "BF", "FC", "OF" };
         }
         */
-        public String GetShip()
+        [Route("{id}")]
+        public String GetShip(string id)
         {
             string ship = "BF";
 
-            return ship;
+            return id;
         }
 
         public IEnumerable<Comment> GetAllShipsTest()
