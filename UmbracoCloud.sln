@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UmbracoCloud.Web", "UmbracoCloud.Web\", "{D9BB0FA6-715E-46D2-A12C-68C2CD34D00A}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_8445"
+		Debug.AspNetCompiler.PhysicalPath = "UmbracoCloud.Web\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8445\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_8445"
+		Release.AspNetCompiler.PhysicalPath = "UmbracoCloud.Web\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8445\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "8445"
+		SlnRelativePath = "UmbracoCloud.Web\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+		{487B68B6-1D1B-4B2A-B490-AF4B5F1417F2} = {487B68B6-1D1B-4B2A-B490-AF4B5F1417F2}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoCloud.Core", "UmbracoCloud.Core\UmbracoCloud.Core.csproj", "{487B68B6-1D1B-4B2A-B490-AF4B5F1417F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9BB0FA6-715E-46D2-A12C-68C2CD34D00A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9BB0FA6-715E-46D2-A12C-68C2CD34D00A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{487B68B6-1D1B-4B2A-B490-AF4B5F1417F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{487B68B6-1D1B-4B2A-B490-AF4B5F1417F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{487B68B6-1D1B-4B2A-B490-AF4B5F1417F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{487B68B6-1D1B-4B2A-B490-AF4B5F1417F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F38CD3B9-D988-4C35-B4D6-BB72912D2B4B}
+	EndGlobalSection
+EndGlobal
