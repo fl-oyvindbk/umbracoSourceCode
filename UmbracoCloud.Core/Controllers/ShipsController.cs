@@ -8,6 +8,8 @@ using Umbraco.Web.WebApi;
 using UmbracoCloud.Core;
 using Umbraco.Web;
 using System.Diagnostics;
+using System.Dynamic;
+using Umbraco.Web.Models;
 
 namespace UmbracoCloud.Core.Controllers
 {
@@ -32,45 +34,59 @@ namespace UmbracoCloud.Core.Controllers
             return id;
         }
 
-        public IEnumerable<Comment> GetAllShipsTest()
+        public IEnumerable<Ship> GetShipsTest()
         {
             // Create an UmbracoHelper for retrieving published content
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
             // Get all comments from the Umbraco tree (this is not a optimized way of doing this, since it queries the complete Umbraco tree)
-            var ships = umbracoHelper.TypedContentAtRoot().DescendantsOrSelf("ships");
-            Debug.Write(ships);
+            var ships = umbracoHelper.TypedContentAtRoot().DescendantsOrSelf("ship");
 
             // Map the found nodes from IPublishedContent to a strongly typed object of type Comment (defined below)
-            var mappedComments = ships.Select(x => new Comment
+            var mappedShips = ships.Select(x => new Ship
             {
-                Name = x.Name                              // Map name of the document
-                //Code = x.ShipCode,                          
+                Name = x.GetPropertyValue("shipName").ToString(),                           // Map name of the document
+                Code = x.GetPropertyValue("shipCode").ToString()
                 //Text = x.GetPropertyValue<string>("ShipDescription")   // Map custom property "text"
             });
 
-            return mappedComments;
+            return mappedShips;
         }
 
-        public class Comment
-        {
-            public string Name { get; set; }
-            public string Code { get; set; }
-            public string Text { get; set; }
-        }
+
 
         public List<Ship> GetAllShips()
         {
             var ships = new List<Ship>();
             var items = Umbraco.ContentAtXPath("//ship").Where("Visible").OrderBy("createDate desc");
-           
+
 
             foreach (var item in items)
             {
-                var ship = new Ship();
-                ship.Name = item.GetPropertyValue("shipName").ToString();
-                ship.Desc = item.GetPropertyValue("shipDescription").ToString();
-                ship.Code = item.GetPropertyValue("shipCode").ToString();
+                var ship = new Ship()
+                {
+                    Id = item.id,
+                    Name = item.GetPropertyValue("shipName").ToString(),
+                    Desc = item.GetPropertyValue("shipDescription").ToString(),
+                    Code = item.GetPropertyValue("shipCode").ToString()
+                };
+                foreach (var img in item.GetPropertyValue("shipImage"))
+                {
+                    
+                    try
+                    {
+                        Console.WriteLine("Line 79");
+                        Console.WriteLine(img.Name);
+                        ship.Images.Add(img.UrlName);
+                    } catch (Exception e)
+                    {
+                        Console.Write(e.ToString());
+                       
+                    }
+
+                    
+                }
+                
                 
                 //newsItem.CreateDate = Convert.ToDateTime(item.CreateDate);
                 ships.Add(ship);
@@ -79,16 +95,17 @@ namespace UmbracoCloud.Core.Controllers
             return ships;
         }
 
-
-
+       
 
         public class Ship
         {
+            public int Id { get; set; }
             public string Name { get; set; }
             public string Code { get; set; }
             public string Desc { get; set; }
-            public string[] Images { get; set; }
-            public DateTime CreateDate { get; set; }
+           // public string[] Images { get; set; }
+           public List<String> Images { get; set; }
+           //public DateTime CreateDate { get; set; }
         }
     }
 }
